@@ -2,7 +2,21 @@
   <div class="col-6">
     <h3 class="pull-left">Managementul Angajatilor</h3>
   </div>
-  <div class="col-6">
-    <h3 class="pull-right">Meniu</h3>
+  <div class="col-6" *ngIf="loginService.isLoggedIn()">
+    <div class="pull-right vertical-align">
+      <div class="btn-group" ngbDropdown role="group">
+        <div class="options" ngbDropdownToggle>
+          Meniu&nbsp;
+        </div>
+        <div class="dropdown-menu" ngbDropdownMenu>
+          <button
+            class="dropdown-item"
+            (click)="onLogout()"
+          >
+            Delogare
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
