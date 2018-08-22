@@ -1,5 +1,12 @@
 <div class="row">
   <div class="col-4">
-    <div class="btn btn-primary">Add me</div>
+    <div
+      class="btn btn-primary"
+      (click)="openModal(addEmployee.getTemplate())"
+    >
+      Adauga angajat
+    </div>
   </div>
 </div>
+
+<em-employee-template #addEmployee></em-employee-template>

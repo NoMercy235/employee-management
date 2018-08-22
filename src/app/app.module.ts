@@ -14,6 +14,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { JwtInterceptor } from './services/jwt.interceptor';
 import { GlobalsService } from './services/globals.service';
+import { EmployeeTemplateComponent } from './templates/employee.template';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,10 @@ import { GlobalsService } from './services/globals.service';
     LoginComponent,
     EmployeesComponent,
     HeaderComponent,
+    EmployeeTemplateComponent,
+  ],
+  entryComponents: [
+    EmployeeTemplateComponent,
   ],
   imports: [
     BrowserModule,
