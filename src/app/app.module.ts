@@ -8,6 +8,10 @@ import { RouterModule } from '@angular/router';
 import { EmployeesComponent } from './employees/employees.component';
 import { APP_ROUTES } from './app.routes';
 import { HeaderComponent } from './header/header.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LoginService } from './services/login.service';
+import { HttpClientModule } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -21,8 +25,13 @@ import { HeaderComponent } from './header/header.component';
     BrowserModule,
     NgbModule,
     RouterModule.forRoot(APP_ROUTES),
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    LoginService,
+    CookieService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
