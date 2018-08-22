@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { GlobalsService } from '../services/globals.service';
 
 @Component({
   selector: 'em-actions',
@@ -10,6 +11,7 @@ export class ActionsComponent implements OnInit {
 
   constructor(
     protected modalService: NgbModal,
+    protected globalsService: GlobalsService,
   ) { }
 
   ngOnInit() {
@@ -21,7 +23,8 @@ export class ActionsComponent implements OnInit {
       .result
       .then(
         (result) => {
-          console.log(result);
+          this.globalsService.employees.push(result);
+          console.log(this.globalsService);
         },
         (reason) => {
           console.log(reason);

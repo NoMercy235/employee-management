@@ -1,4 +1,6 @@
 <div class="em-container">
   <em-actions></em-actions>
-  <div></div>
+  <div *ngFor="let employee of globalsService.employees">
+    {{ employee.name }}
+  </div>
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GlobalsService } from '../services/globals.service';
 
 @Component({
   selector: 'em-employees',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeesComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public globalsService: GlobalsService,
+  ) { }
 
   ngOnInit() {
   }
