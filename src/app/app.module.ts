@@ -10,8 +10,10 @@ import { APP_ROUTES } from './app.routes';
 import { HeaderComponent } from './header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginService } from './services/login.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { JwtInterceptor } from './services/jwt.interceptor';
+import { GlobalsService } from './services/globals.service';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,12 @@ import { CookieService } from 'ngx-cookie-service';
   providers: [
     LoginService,
     CookieService,
+    GlobalsService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent]
 })

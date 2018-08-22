@@ -17,4 +17,9 @@ export class LoginService {
     const url = `${this.endpoint}auth/authenticate`;
     return this.httpClient.post(url, credentials);
   }
+
+  getMe(): Observable {
+    const url = `${this.endpoint}api/user/get_user_with_token`;
+    return this.httpClient.get(url);
+  }
 }
