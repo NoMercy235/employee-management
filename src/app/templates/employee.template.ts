@@ -1,5 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'em-employee-template',
@@ -7,24 +8,23 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 
 export class EmployeeTemplateComponent implements OnInit {
-  @ViewChild('template') template: ElementRef;
+  @Input('value') value: any = {};
   public fg: FormGroup;
 
-  constructor() {
+  constructor(
+    public activeModal: NgbActiveModal,
+  ) {
   }
 
   ngOnInit() {
     this.fg = new FormGroup({
-      name: new FormControl(''),
-      hireDate: new FormControl(''),
+      name: new FormControl(this.value.name || ''),
+      hireDate: new FormControl(this.value.hireDate || ''),
     });
   }
 
-  public getTemplate(): ElementRef {
-    return this.template;
-  }
-
   public onSubmit(): void {
+    this.activeModal.close(this.fg.value);
     this.fg.reset({ name: '', hireDate: '' });
   }
 }

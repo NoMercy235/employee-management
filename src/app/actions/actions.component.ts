@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { GlobalsService } from '../services/globals.service';
 import { LocalStorageService } from 'angular-web-storage';
+import { EmployeeTemplateComponent } from '../templates/employee.template';
 
 @Component({
   selector: 'em-actions',
@@ -19,15 +20,16 @@ export class ActionsComponent implements OnInit {
   ngOnInit() {
   }
 
-  public openModal(content) {
+  public openModal() {
     this.modalService
-      .open(content)
+      .open(EmployeeTemplateComponent)
       .result
       .then(
         (result) => {
           this.globalsService.employees.push(result);
           this.localStorage.set('employees', this.globalsService.employees);
         },
+        reason => {},
       );
   }
 

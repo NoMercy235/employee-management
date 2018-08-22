@@ -35,6 +35,10 @@
   width: 10%;
 }
 
+.em-table .em-actions > div:not(:last-of-type) {
+  margin-right: 10px;
+}
+
 .em-table tr:hover {
   background-color: darkgray;
 }
