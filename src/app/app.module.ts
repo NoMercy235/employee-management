@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ActionsComponent } from './actions/actions.component';
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
@@ -16,6 +16,7 @@ import { JwtInterceptor } from './services/jwt.interceptor';
 import { GlobalsService } from './services/globals.service';
 import { EmployeeTemplateComponent } from './templates/employee.template';
 import { CommonModule } from '@angular/common';
+import { AngularWebStorageModule } from 'angular-web-storage';
 
 @NgModule({
   declarations: [
@@ -36,12 +37,12 @@ import { CommonModule } from '@angular/common';
     RouterModule.forRoot(APP_ROUTES),
     ReactiveFormsModule,
     HttpClientModule,
+    AngularWebStorageModule,
   ],
   providers: [
     LoginService,
     CookieService,
     GlobalsService,
-    // NgbActiveModal,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,

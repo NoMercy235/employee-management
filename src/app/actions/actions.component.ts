@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { GlobalsService } from '../services/globals.service';
+import { LocalStorageService } from 'angular-web-storage';
 
 @Component({
   selector: 'em-actions',
@@ -12,6 +13,7 @@ export class ActionsComponent implements OnInit {
   constructor(
     protected modalService: NgbModal,
     protected globalsService: GlobalsService,
+    protected localStorage: LocalStorageService,
   ) { }
 
   ngOnInit() {
@@ -24,11 +26,8 @@ export class ActionsComponent implements OnInit {
       .then(
         (result) => {
           this.globalsService.employees.push(result);
-          console.log(this.globalsService);
+          this.localStorage.set('employees', this.globalsService.employees);
         },
-        (reason) => {
-          console.log(reason);
-        }
       );
   }
 

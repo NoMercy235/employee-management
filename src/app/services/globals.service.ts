@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
+import { LocalStorageService } from 'angular-web-storage';
 
 @Injectable()
 export class GlobalsService {
   public user: any;
   public employees: any[] = [];
 
-  constructor() {
+  constructor(
+    protected localStorage: LocalStorageService,
+  ) {
+    this.employees = localStorage.get('employees') || [];
   }
 
   setUser(user): void {
