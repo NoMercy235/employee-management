@@ -9,7 +9,11 @@
     <tbody>
       <tr *ngFor="let employee of globalsService.employees; let i = index">
         <td>{{ employee.name }}</td>
-        <td></td>
+        <td>
+          <span *ngIf="employee.hireDate">
+            {{ dateFormatter.format(employee.hireDate) }}
+          </span>
+        </td>
         <td class="em-actions">
           <div
             class="btn btn-primary"

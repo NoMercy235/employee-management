@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalsService } from '../services/globals.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateParserFormatter, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LocalStorageService } from 'angular-web-storage';
 import { EmployeeTemplateComponent } from '../templates/employee.template';
 
@@ -13,6 +13,7 @@ export class EmployeesComponent implements OnInit {
 
   constructor(
     public globalsService: GlobalsService,
+    public dateFormatter: NgbDateParserFormatter,
     protected modalService: NgbModal,
     protected localStorage: LocalStorageService,
   ) { }

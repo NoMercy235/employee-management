@@ -18,14 +18,26 @@
     </div>
 
     <div class="form-group">
-      <label for="hireDate">Data angajarii</label>
-      <input
-        type="text"
-        class="form-control"
-        id="hireDate"
-        formControlName="hireDate"
-        required
-      >
+      <div class="input-group">
+        <input
+          class="form-control"
+          placeholder="Data angajarii (zi/luna/an)"
+          name="dp"
+          formControlName="hireDate"
+          ngbDatepicker
+          #hireDate="ngbDatepicker"
+          (click)="hireDate.toggle()"
+        >
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            (click)="hireDate.toggle()"
+            type="button"
+          >
+            <i class="fa fa-calendar"></i>
+          </button>
+        </div>
+      </div>
     </div>
   </form>
 </div>

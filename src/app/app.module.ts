@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateParserFormatter, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ActionsComponent } from './actions/actions.component';
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
@@ -17,6 +17,7 @@ import { GlobalsService } from './services/globals.service';
 import { EmployeeTemplateComponent } from './templates/employee.template';
 import { CommonModule } from '@angular/common';
 import { AngularWebStorageModule } from 'angular-web-storage';
+import { DateFormatter } from './services/DateFormatter';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,10 @@ import { AngularWebStorageModule } from 'angular-web-storage';
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true,
+    },
+    {
+      provide: NgbDateParserFormatter,
+      useClass: DateFormatter
     },
   ],
   bootstrap: [AppComponent]
