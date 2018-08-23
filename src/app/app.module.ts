@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 import { EmployeesComponent } from './employees/employees.component';
 import { APP_ROUTES } from './app.routes';
 import { HeaderComponent } from './header/header.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginService } from './services/login.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
@@ -36,6 +36,7 @@ import { DateFormatter } from './services/DateFormatter';
     CommonModule,
     NgbModule,
     RouterModule.forRoot(APP_ROUTES),
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     AngularWebStorageModule,

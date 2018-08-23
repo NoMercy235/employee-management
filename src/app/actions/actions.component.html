@@ -1,7 +1,19 @@
 <div class="row">
   <div class="col-4">
+    <div class="form-group">
+      <label>Cauta angajati</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="globalsService.employeesQuery"
+      >
+    </div>
+  </div>
+  <div class="col-4">
+  </div>
+  <div class="col-4">
     <div
-      class="btn btn-primary"
+      class="btn btn-primary pull-right"
       (click)="openModal()"
     >
       Adauga angajat

@@ -12,8 +12,8 @@ import { EmployeeTemplateComponent } from '../templates/employee.template';
 export class ActionsComponent implements OnInit {
 
   constructor(
+    public globalsService: GlobalsService,
     protected modalService: NgbModal,
-    protected globalsService: GlobalsService,
     protected localStorage: LocalStorageService,
   ) { }
 

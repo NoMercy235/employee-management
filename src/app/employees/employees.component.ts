@@ -21,6 +21,15 @@ export class EmployeesComponent implements OnInit {
   ngOnInit() {
   }
 
+  public getEmployees() {
+    return this.globalsService.employees
+      .filter((e: any) => {
+        return e.name.toLowerCase().includes(
+          this.globalsService.employeesQuery
+        );
+      });
+  }
+
   public editEmployee(index: number): void {
     const modalRef: any = this.modalService
       .open(EmployeeTemplateComponent);

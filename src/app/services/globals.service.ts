@@ -4,6 +4,7 @@ import { LocalStorageService } from 'angular-web-storage';
 @Injectable()
 export class GlobalsService {
   public user: any;
+  public employeesQuery = '';
   public employees: any[] = [];
 
   constructor(
