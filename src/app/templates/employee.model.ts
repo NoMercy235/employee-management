@@ -22,11 +22,19 @@ export class EmployeeModel {
     this.step = metadata.step || EMPLOYEE_STEPS.zero;
   }
 
-  public getExpectedStepClass(): string {
+  public setStep(months: number): void {
+    this.step = this.getStepFromMonths(months);
+  }
+
+  public getHiredMonths(): number {
     const today = moment.utc();
-    const months = +(today
+    return +(today
       .diff(this.hireDate, 'months', true)
       .toFixed(2));
+  }
+
+  public getExpectedStepClass(): string {
+    const months = this.getHiredMonths();
 
     const redMonths = months + 1;
     if (this.getStepFromMonths(redMonths) !== this.step) {

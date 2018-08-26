@@ -15,7 +15,7 @@
         formControlName="name"
       >
     </div>
-    <div class="form-group">
+    <div class="form-group" *ngIf="isEdit">
       <label for="step">Treapta (0 / I / II / III)</label>
       <input
         type="text"
