@@ -1,4 +1,5 @@
-import moment, { Moment } from 'moment';
+import * as moment from 'moment';
+import { Moment } from 'moment';
 
 export const EMPLOYEE_STEPS = {
   zero: '0',
@@ -58,7 +59,7 @@ export class EmployeeModel {
       return EMPLOYEE_STEPS.zero;
     } else if (months >= 12 && months < 60) {
       return EMPLOYEE_STEPS.one;
-    } else if (months >= 60 < 120) {
+    } else if (months >= 60 && months < 120) {
       return EMPLOYEE_STEPS.two;
     } else if (months >= 120) {
       return EMPLOYEE_STEPS.three;
