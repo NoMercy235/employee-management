@@ -1,21 +1,17 @@
-FROM node:carbon
+FROM nginx:latest
 
 # File Author / Maintainer
-LABEL authors="Alexandru Florian Barascu <alex.florin235@yahoo.com>"
-MAINTAINER alex.florin235@yahoo.com
+LABEL authors="Alexandru Florian Barascu <alex.florin2352@gmail.com>"
+MAINTAINER alex.florin2352@gmail.com
 
-ENV PORT=4200
+ENV PORT=5170
 
-# Set work directory to /src
-WORKDIR /src
+WORKDIR /usr/share/nginx/html
 
-# Copy app source
-COPY . /src
-
-# Install app dependencies
-RUN npm install
+COPY ./dist/employee-management-client /usr/share/nginx/html
+COPY ./config/compression.conf /etc/nginx/conf.d/compression.conf
+COPY ./config/nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE $PORT
 
-# Start command as per package.json
-ENTRYPOINT ["npm", "start"]
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
