@@ -33,7 +33,7 @@ export class EmployeeModel {
       return 'em-red';
     }
 
-    const yellowMonths = months + 3;
+    const yellowMonths = months + 2;
     if (this.getStepFromMonths(yellowMonths) !== this.step) {
       return 'em-yellow';
     }
