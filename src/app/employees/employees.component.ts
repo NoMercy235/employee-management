@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalsService } from '../services/globals.service';
-import { NgbDateParserFormatter, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LocalStorageService } from 'angular-web-storage';
 import { EmployeeTemplateComponent } from '../templates/employee.template';
 
@@ -13,7 +13,6 @@ export class EmployeesComponent implements OnInit {
 
   constructor(
     public globalsService: GlobalsService,
-    public dateFormatter: NgbDateParserFormatter,
     protected modalService: NgbModal,
     protected localStorage: LocalStorageService,
   ) { }
@@ -35,10 +34,7 @@ export class EmployeesComponent implements OnInit {
       .open(EmployeeTemplateComponent);
 
     const currentEmployee = this.globalsService.employees[index];
-    modalRef.componentInstance.value = {
-      name: currentEmployee.name,
-      hireDate: currentEmployee.hireDate,
-    };
+    modalRef.componentInstance.value = currentEmployee;
 
     modalRef.result
       .then(

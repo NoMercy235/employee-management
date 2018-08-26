@@ -13,7 +13,15 @@
         class="form-control"
         id="name"
         formControlName="name"
-        required
+      >
+    </div>
+    <div class="form-group">
+      <label for="step">Treapta (0 / I / II / III)</label>
+      <input
+        type="text"
+        class="form-control"
+        id="step"
+        formControlName="step"
       >
     </div>
 
@@ -51,6 +59,7 @@
   <button
     type="button" class="btn btn-primary"
     (click)="onSubmit()"
+    [disabled]="fg.invalid"
   >
     Salveaza
   </button>

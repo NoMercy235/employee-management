@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { EmployeeModel } from './employee.model';
+import { ValidationService } from '../services/validation.service';
 
 @Component({
   selector: 'em-employee-template',
@@ -8,23 +10,28 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 
 export class EmployeeTemplateComponent implements OnInit {
-  @Input('value') value: any = {};
+  @Input('value') value: EmployeeModel = new EmployeeModel();
   public fg: FormGroup;
 
   constructor(
     public activeModal: NgbActiveModal,
+    protected formBuilder: FormBuilder,
   ) {
   }
 
   ngOnInit() {
-    this.fg = new FormGroup({
-      name: new FormControl(this.value.name || ''),
-      hireDate: new FormControl(this.value.hireDate || ''),
+    this.fg = this.formBuilder.group({
+      name: [this.value.name, [Validators.required]],
+      hireDate: [this.value.hireDate, [Validators.required]],
+      step: [
+        this.value.step,
+        [Validators.required, ValidationService.isValidStep]
+      ],
     });
   }
 
   public onSubmit(): void {
-    this.activeModal.close(this.fg.value);
-    this.fg.reset({ name: '', hireDate: '' });
+    this.activeModal.close(new EmployeeModel(this.fg.value));
+    this.fg.reset(new EmployeeModel());
   }
 }
