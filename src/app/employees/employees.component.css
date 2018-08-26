@@ -42,3 +42,11 @@
 .em-table tr:hover {
   background-color: darkgray;
 }
+
+.em-table .em-red {
+  background-color: red;
+}
+
+.em-table .em-yellow {
+  background-color: yellow;
+}

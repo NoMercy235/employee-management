@@ -8,7 +8,10 @@
       <td class="em-actions"><h4>Actiuni</h4></td>
     </thead>
     <tbody>
-      <tr *ngFor="let employee of getEmployees(); let i = index">
+      <tr
+        *ngFor="let employee of getEmployees(); let i = index"
+        [class]="employee.getExpectedStepClass()"
+      >
         <td>{{ employee.name }}</td>
         <td>
           <span *ngIf="employee.hireDate">

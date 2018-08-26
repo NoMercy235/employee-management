@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment, { Moment } from 'moment';
 
 export const EMPLOYEE_STEPS = {
   zero: '0',
@@ -9,25 +9,40 @@ export const EMPLOYEE_STEPS = {
 
 export class EmployeeModel {
   public name: string;
-  public hireDate: string;
+  public hireDate: Moment;
   public step: string;
 
   constructor(metadata: any = {}) {
     this.name = metadata.name || '';
-    this.hireDate = metadata.hireDate || '';
+    if (typeof <any>metadata.hireDate === 'string') {
+      this.hireDate = moment.utc(metadata.hireDate);
+    } else {
+      this.hireDate = metadata.hireDate;
+    }
     this.step = metadata.step || EMPLOYEE_STEPS.zero;
   }
 
-  public getExpectedStep(): string {
-    const today = moment();
-    const hiredOn = moment(this.hireDate);
-    const months = today.diff(hiredOn, 'months', true);
-    console.log(months.toFixed(2));
-    return this.getStepFromMonths(months);
+  public getExpectedStepClass(): string {
+    const today = moment.utc();
+    const months = +(today
+      .diff(this.hireDate, 'months', true)
+      .toFixed(2));
+
+    const redMonths = months + 1;
+    if (this.getStepFromMonths(redMonths) !== this.step) {
+      return 'em-red';
+    }
+
+    const yellowMonths = months + 3;
+    if (this.getStepFromMonths(yellowMonths) !== this.step) {
+      return 'em-yellow';
+    }
+
+    return '';
   }
 
   public getFriendlyHireDate(): string {
-    return moment(this.hireDate).format('DD-MM-YYYY');
+    return this.hireDate.format('DD-MM-YYYY');
   }
 
   private getStepFromMonths(months: number): string {
