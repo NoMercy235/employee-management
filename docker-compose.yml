@@ -1,8 +1,8 @@
 version: '2'
 
 services:
-  ask-around:
-    container_name: aemployee-management
+  employee-management:
+    container_name: employee-management
     build:
       context: .
       dockerfile: Dockerfile
