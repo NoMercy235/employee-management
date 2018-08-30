@@ -15,9 +15,9 @@ import { CookieService } from 'ngx-cookie-service';
 import { JwtInterceptor } from './services/jwt.interceptor';
 import { GlobalsService } from './services/globals.service';
 import { EmployeeTemplateComponent } from './templates/employee.template';
-import { CommonModule } from '@angular/common';
 import { AngularWebStorageModule } from 'angular-web-storage';
 import { DateFormatter } from './services/DateFormatter';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -32,8 +32,7 @@ import { DateFormatter } from './services/DateFormatter';
     EmployeeTemplateComponent,
   ],
   imports: [
-    BrowserModule,
-    CommonModule,
+    SharedModule,
     NgbModule,
     RouterModule.forRoot(APP_ROUTES),
     FormsModule,

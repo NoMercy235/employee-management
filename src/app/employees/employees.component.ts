@@ -3,6 +3,7 @@ import { GlobalsService } from '../services/globals.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LocalStorageService } from 'angular-web-storage';
 import { EmployeeTemplateComponent } from '../templates/employee.template';
+import { ConfirmComponent } from '../shared/confirm.component';
 
 @Component({
   selector: 'em-employees',
@@ -52,7 +53,21 @@ export class EmployeesComponent implements OnInit {
   }
 
   public deleteEmployee(index: number): void {
-    this.globalsService.employees.splice(index, 1);
-    this.localStorage.set('employees', this.globalsService.employees);
+    const modalRef: any = this.modalService
+      .open(ConfirmComponent);
+
+    const currentEmployee = this.globalsService.employees[index];
+    modalRef.componentInstance.resources = [
+      { label: currentEmployee.name },
+    ];
+
+    modalRef.result
+      .then(
+        (result) => {
+          this.globalsService.employees.splice(index, 1);
+          this.localStorage.set('employees', this.globalsService.employees);
+        },
+        reason => {},
+      );
   }
 }
