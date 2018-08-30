@@ -58,6 +58,20 @@ export class EmployeeModel {
     return this.hireDate.format('DD-MM-YYYY');
   }
 
+  public getMonthsUntilStepChange(): number {
+    const months = this.getHiredMonths() + this.experienceMonths;
+    switch (this.step) {
+      case EMPLOYEE_STEPS.zero:
+        return 12 - months;
+      case EMPLOYEE_STEPS.one:
+        return 60 - months;
+      case EMPLOYEE_STEPS.two:
+        return 120 - months;
+      case EMPLOYEE_STEPS.three:
+        return 0;
+    }
+  }
+
   private getStepFromMonths(months: number): string {
     if (months < 12) {
       return EMPLOYEE_STEPS.zero;
