@@ -6,6 +6,7 @@
       <td><h4>Data angajare</h4></td>
       <td><h4>Treapta</h4></td>
       <td><h4>Luni experienta enterioara</h4></td>
+      <td><h4>Observatii</h4></td>
       <td class="em-actions"><h4>Actiuni</h4></td>
     </thead>
     <tbody>
@@ -24,6 +25,8 @@
         </td>
         <td>
           {{ employee.experienceMonths }}
+        </td>
+        <td [innerHtml]="getObservations(employee)">
         </td>
         <td class="em-actions">
           <div

@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LocalStorageService } from 'angular-web-storage';
 import { EmployeeTemplateComponent } from '../templates/employee.template';
 import { ConfirmComponent } from '../shared/confirm.component';
+import { EmployeeModel } from '../templates/employee.model';
 
 @Component({
   selector: 'em-employees',
@@ -69,5 +70,19 @@ export class EmployeesComponent implements OnInit {
         },
         reason => {},
       );
+  }
+
+  public getObservations(employee: EmployeeModel): string {
+    const yellowStep = employee.getExpectedStep(2);
+    if (yellowStep !== employee.step) {
+      return `Angajatul trebuie sa aiba treapta <b>${yellowStep}</b> in mai putin de doua luni.`;
+    }
+
+    const redStep = employee.getExpectedStep(1);
+    if (redStep !== employee.step) {
+      return `Angajatul trebuie sa aiba treapta <b>${redStep}</b> in mai putin de o luna sau are treapta gresita.`;
+    }
+
+    return 'Angajatul are treapta corecta';
   }
 }

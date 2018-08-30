@@ -36,16 +36,18 @@ export class EmployeeModel {
       .toFixed(2));
   }
 
-  public getExpectedStepClass(): string {
-    const months = this.getHiredMonths() + this.experienceMonths;
+  public getExpectedStep(offset: number = 0): string {
+    const months = this.getHiredMonths() + this.experienceMonths + offset;
 
-    const redMonths = months + 1;
-    if (this.getStepFromMonths(redMonths) !== this.step) {
+    return this.getStepFromMonths(months);
+  }
+
+  public getExpectedStepClass(): string {
+    if (this.getExpectedStep(1) !== this.step) {
       return 'em-red';
     }
 
-    const yellowMonths = months + 2;
-    if (this.getStepFromMonths(yellowMonths) !== this.step) {
+    if (this.getExpectedStep(2) !== this.step) {
       return 'em-yellow';
     }
 
