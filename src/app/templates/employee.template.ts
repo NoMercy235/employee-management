@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { EmployeeModel } from './employee.model';
-import { ValidationService } from '../services/validation.service';
+import { EMPLOYEE_STEPS, EmployeeModel } from './employee.model';
 import * as moment from 'moment';
 import { Moment } from 'moment';
 
@@ -15,11 +14,21 @@ export class EmployeeTemplateComponent implements OnInit {
   @Input('value') value: EmployeeModel = new EmployeeModel();
   public fg: FormGroup;
   public isEdit: boolean;
+  public options: { value: any, label: string }[];
 
   constructor(
     public activeModal: NgbActiveModal,
     protected formBuilder: FormBuilder,
   ) {
+    this.options = [
+      { value: '', label: 'Alege' },
+    ];
+    Object.keys(EMPLOYEE_STEPS).forEach(key => {
+      this.options.push({
+        value: EMPLOYEE_STEPS[key],
+        label: EMPLOYEE_STEPS[key],
+      });
+    });
   }
 
   ngOnInit() {
@@ -37,10 +46,7 @@ export class EmployeeTemplateComponent implements OnInit {
         this.value.experienceMonths,
         [Validators.required]
       ],
-      step: [
-        this.value.step,
-        [Validators.required, ValidationService.isValidStep]
-      ],
+      step: [this.value.step, [Validators.required]],
     });
   }
 

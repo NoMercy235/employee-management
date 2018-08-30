@@ -18,12 +18,16 @@
     <div class="row">
       <div class="form-group col-6" *ngIf="isEdit">
         <label for="step">Treapta (0 / I / II / III)</label>
-        <input
+        <select
           type="text"
           class="form-control"
           id="step"
           formControlName="step"
         >
+          <option *ngFor="let o of options" [value]="o.value">
+            {{ o.label }}
+          </option>
+        </select>
       </div>
 
       <div
