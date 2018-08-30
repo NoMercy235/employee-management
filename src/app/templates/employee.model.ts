@@ -5,7 +5,7 @@ export const EMPLOYEE_STEPS = {
   zero: '0',
   one: 'I',
   two: 'II',
-  three: 'II',
+  three: 'III',
 };
 
 export class EmployeeModel {
