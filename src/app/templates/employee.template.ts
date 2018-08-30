@@ -33,6 +33,10 @@ export class EmployeeTemplateComponent implements OnInit {
     this.fg = this.formBuilder.group({
       name: [this.value.name, [Validators.required]],
       hireDate: [convertedDate, [Validators.required]],
+      experienceMonths: [
+        this.value.experienceMonths,
+        [Validators.required]
+      ],
       step: [
         this.value.step,
         [Validators.required, ValidationService.isValidStep]
@@ -46,7 +50,9 @@ export class EmployeeTemplateComponent implements OnInit {
       this.fg.value.hireDate
     );
     if (!this.isEdit) {
-      employee.setStep(employee.getHiredMonths());
+      employee.setStep(
+        employee.getHiredMonths() + employee.experienceMonths
+      );
     }
     this.activeModal.close(employee);
     this.fg.reset(new EmployeeModel());

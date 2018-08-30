@@ -12,6 +12,7 @@ export class EmployeeModel {
   public name: string;
   public hireDate: Moment;
   public step: string;
+  public experienceMonths: number;
 
   constructor(metadata: any = {}) {
     this.name = metadata.name || '';
@@ -21,6 +22,7 @@ export class EmployeeModel {
       this.hireDate = metadata.hireDate;
     }
     this.step = metadata.step || EMPLOYEE_STEPS.zero;
+    this.experienceMonths = +metadata.experienceMonths || 0;
   }
 
   public setStep(months: number): void {
@@ -35,7 +37,7 @@ export class EmployeeModel {
   }
 
   public getExpectedStepClass(): string {
-    const months = this.getHiredMonths();
+    const months = this.getHiredMonths() + this.experienceMonths;
 
     const redMonths = months + 1;
     if (this.getStepFromMonths(redMonths) !== this.step) {
