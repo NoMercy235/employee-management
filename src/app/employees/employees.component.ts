@@ -73,14 +73,14 @@ export class EmployeesComponent implements OnInit {
   }
 
   public getObservations(employee: EmployeeModel): string {
-    const yellowStep = employee.getExpectedStep(2);
-    if (yellowStep !== employee.step) {
-      return `Angajatul trebuie sa aiba treapta <b>${yellowStep}</b> in mai putin de doua luni.`;
-    }
-
     const redStep = employee.getExpectedStep(1);
     if (redStep !== employee.step) {
       return `Angajatul trebuie sa aiba treapta <b>${redStep}</b> in mai putin de o luna sau are treapta gresita.`;
+    }
+
+    const yellowStep = employee.getExpectedStep(2);
+    if (yellowStep !== employee.step) {
+      return `Angajatul trebuie sa aiba treapta <b>${yellowStep}</b> in mai putin de doua luni.`;
     }
 
     return 'Angajatul are treapta corecta';
