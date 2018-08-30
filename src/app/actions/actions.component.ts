@@ -22,7 +22,7 @@ export class ActionsComponent implements OnInit {
 
   public openModal() {
     this.modalService
-      .open(EmployeeTemplateComponent)
+      .open(EmployeeTemplateComponent, { size: 'lg' })
       .result
       .then(
         (result) => {

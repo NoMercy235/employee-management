@@ -33,7 +33,7 @@ export class EmployeesComponent implements OnInit {
 
   public editEmployee(index: number): void {
     const modalRef: any = this.modalService
-      .open(EmployeeTemplateComponent);
+      .open(EmployeeTemplateComponent, { size: 'lg' });
 
     const currentEmployee = this.globalsService.employees[index];
     modalRef.componentInstance.value = currentEmployee;
