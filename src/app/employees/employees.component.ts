@@ -26,7 +26,7 @@ export class EmployeesComponent implements OnInit {
     return this.globalsService.employees
       .filter((e: any) => {
         return e.name.toLowerCase().includes(
-          this.globalsService.employeesQuery
+          this.globalsService.employeesQuery.toLowerCase()
         );
       });
   }
