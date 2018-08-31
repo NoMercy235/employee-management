@@ -11,12 +11,29 @@
   </div>
   <div class="col-4">
   </div>
-  <div class="col-4">
+  <div class="col-4 em-btn-actions">
     <div
       class="btn btn-primary pull-right"
       (click)="openModal()"
     >
       Adauga angajat
+    </div>
+    <div
+      class="btn btn-warning pull-right em-import-container"
+    >
+      Importa date
+      <input
+        type="file"
+        title=" "
+        class="em-import-btn"
+        (change)="importData($event.target.files)"
+      />
+    </div>
+    <div
+      class="btn btn-warning pull-right"
+      (click)="exportData()"
+    >
+      Exporta date
     </div>
   </div>
 </div>

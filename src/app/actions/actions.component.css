@@ -1,0 +1,27 @@
+.em-btn-actions > div:not(:first-of-type) {
+  margin: 0 10px 0 10px;
+}
+
+.em-btn-actions > div:first-of-type {
+  margin: 0 0 0 10px;
+}
+
+.em-import-container {
+  position: relative;
+}
+
+.em-import-btn {
+  z-index: 2;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  font-size: 0;
+}
+
+.em-import-btn:hover {
+  cursor: pointer;
+}
