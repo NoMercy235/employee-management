@@ -83,10 +83,12 @@ export class EmployeesComponent implements OnInit {
       return `Angajatul trebuie sa aiba treapta <b>${yellowStep}</b> in mai putin de doua luni.`;
     }
 
-    const nextChange = employee.getMonthsUntilStepChange().toFixed(0);
+    const nextChange = +employee.getMonthsUntilStepChange().toFixed(0);
     let finalText = `Angajatul are treapta corecta.`;
     if (nextChange) {
       finalText += ` Urmatoarea schimbare in <b>${nextChange}</b> luni`;
+    } else {
+      finalText += 'Trepta este finala.';
     }
     return finalText;
   }
