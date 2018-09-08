@@ -4,7 +4,8 @@ import { GlobalsService } from '../services/globals.service';
 import { LocalStorageService } from 'angular-web-storage';
 import { EmployeeTemplateComponent } from '../templates/employee.template';
 import { saveAs } from 'file-saver/FileSaver';
-import { EmployeeModel } from '../templates/employee.model';
+import { EMPLOYEE_FIELDS, EmployeeModel } from '../templates/employee.model';
+import { ExcelExportService } from '../services/ExcelExport.service';
 
 @Component({
   selector: 'em-actions',
@@ -17,6 +18,7 @@ export class ActionsComponent implements OnInit {
     public globalsService: GlobalsService,
     protected modalService: NgbModal,
     protected localStorage: LocalStorageService,
+    protected excelService: ExcelExportService,
   ) { }
 
   ngOnInit() {
@@ -44,6 +46,24 @@ export class ActionsComponent implements OnInit {
       { type: 'application/json' }
       );
     saveAs(blob, 'angajati.txt');
+  }
+
+  public exportDataAsExcel(): void {
+    const employees = this.localStorage
+      .get('employees')
+      .map(e => new EmployeeModel(e))
+      .map((e: EmployeeModel) => {
+        const parsed = {};
+        Object.keys(e).forEach(key => {
+          parsed[EMPLOYEE_FIELDS[key].label] = e.cleanField(key);
+        });
+        return parsed;
+      });
+
+    this.excelService.exportAsExcelFile(
+      employees,
+      'employees'
+    );
   }
 
   public importData(files: any): void {

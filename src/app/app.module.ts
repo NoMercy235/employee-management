@@ -17,6 +17,7 @@ import { EmployeeTemplateComponent } from './templates/employee.template';
 import { AngularWebStorageModule } from 'angular-web-storage';
 import { DateFormatter } from './services/DateFormatter';
 import { SharedModule } from './shared/shared.module';
+import { ExcelExportService } from './services/ExcelExport.service';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { SharedModule } from './shared/shared.module';
     LoginService,
     CookieService,
     GlobalsService,
+    ExcelExportService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,

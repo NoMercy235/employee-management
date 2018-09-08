@@ -4,7 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LocalStorageService } from 'angular-web-storage';
 import { EmployeeTemplateComponent } from '../templates/employee.template';
 import { ConfirmComponent } from '../shared/confirm.component';
-import { EmployeeModel } from '../templates/employee.model';
+import { EMPLOYEE_FIELDS, EmployeeModel } from '../templates/employee.model';
 
 @Component({
   selector: 'em-employees',
@@ -12,6 +12,7 @@ import { EmployeeModel } from '../templates/employee.model';
   styleUrls: ['./employees.component.css']
 })
 export class EmployeesComponent implements OnInit {
+  public employeeFields = EMPLOYEE_FIELDS;
 
   constructor(
     public globalsService: GlobalsService,
@@ -35,8 +36,8 @@ export class EmployeesComponent implements OnInit {
     const modalRef: any = this.modalService
       .open(EmployeeTemplateComponent, { size: 'lg' });
 
-    const currentEmployee = this.globalsService.employees[index];
-    modalRef.componentInstance.value = currentEmployee;
+    modalRef.componentInstance.value =
+      this.globalsService.employees[index];
 
     modalRef.result
       .then(
