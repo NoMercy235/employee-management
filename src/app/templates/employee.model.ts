@@ -67,7 +67,7 @@ export class EmployeeModel {
   }
 
   public getTotalExpMonths(): number {
-    return +(this.experienceMonths + this.getHiredMonths().toFixed(0));
+    return this.experienceMonths + +this.getHiredMonths().toFixed(0);
   }
 
   public getMonthsUntilStepChange(): number {
