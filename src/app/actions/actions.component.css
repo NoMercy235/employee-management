@@ -1,9 +1,7 @@
-.em-btn-actions > div:not(:first-of-type) {
-  margin: 0 10px 0 10px;
-}
-
-.em-btn-actions > div:first-of-type {
-  margin: 0 0 0 10px;
+.em-btn-actions {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .em-import-container {
